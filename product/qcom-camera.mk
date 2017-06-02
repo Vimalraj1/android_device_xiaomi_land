@@ -2,4 +2,5 @@
 PRODUCT_PACKAGES += \
     camera.$(TARGET_BOARD_PLATFORM) \
     libmm-qcamera \
+    SnapdragonCamera \
     libxml2
