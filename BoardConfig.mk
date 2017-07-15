@@ -14,52 +14,179 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/land
-BOARD_PATH := device/xiaomi/land/board
+LOCAL_PATH := device/xiaomi/land
 
-# DEODEX BUILD
-#DISABLE_DEXPREOPT=true
+# Platform
+TARGET_BOARD_PLATFORM := msm8937
 
-# Define platform before including any common things
-include $(DEVICE_PATH)/PlatformConfig.mk
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
 
-# Inherit common ARM64 board fragments
-include $(BOARD_PATH)/common/arm64/architecture.mk
-include $(BOARD_PATH)/common/arm64/binder.mk
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
 
-# Inherit common board fragments
-include $(BOARD_PATH)/common/bluetooth.mk
-include $(BOARD_PATH)/common/bootloader.mk
-include $(BOARD_PATH)/common/camera.mk
-include $(BOARD_PATH)/common/clang.mk
-include $(BOARD_PATH)/common/cpusets.mk
-include $(BOARD_PATH)/common/dexopt.mk
-include $(BOARD_PATH)/common/dlmalloc.mk
-include $(BOARD_PATH)/common/filesystem.mk
-include $(BOARD_PATH)/common/gps.mk
-include $(BOARD_PATH)/common/sepolicy.mk
+# kernel
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78B0000
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+BOARD_KERNEL_PAGESIZE :=  2048
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+TARGET_KERNEL_CONFIG := lineageos_land_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8937
 
-# Inherit QCOM board fragments
-include $(BOARD_PATH)/qcom/bluetooth.mk
-include $(BOARD_PATH)/qcom/bootloader.mk
-include $(BOARD_PATH)/qcom/cne.mk
-include $(BOARD_PATH)/qcom/display.mk
-include $(BOARD_PATH)/qcom/encryption.mk
-include $(BOARD_PATH)/qcom/fm.mk
-include $(BOARD_PATH)/qcom/gps.mk
-include $(BOARD_PATH)/qcom/per-mgr.mk
-include $(BOARD_PATH)/qcom/platform.mk
-include $(BOARD_PATH)/qcom/power.mk
-include $(BOARD_PATH)/qcom/recovery.mk
-include $(BOARD_PATH)/qcom/ril.mk
-include $(BOARD_PATH)/qcom/sepolicy.mk
-include $(BOARD_PATH)/qcom/time.mk
+# ANT
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
-# Inherit Cyanogen board fragments
-include $(BOARD_PATH)/cyanogen/hardware.mk
+# Audio
+AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
+AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
+AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
+AUDIO_FEATURE_ENABLED_CUSTOMSTEREO := true
+AUDIO_FEATURE_ENABLED_DEV_ARBI := true
+AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
+AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
+BOARD_SUPPORTS_SOUND_TRIGGER := true
+BOARD_USES_ALSA_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
 
-# Inherit device-specific board fragments
-include $(DEVICE_PATH)/board/*.mk
+# Binder
+TARGET_USES_64_BIT_BINDER := true
+
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+QCOM_BT_USE_SMD_TTY := true
+
+# Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_BOOTLOADER_BOARD_NAME := MSM8937
+
+# Camera
+USE_DEVICE_SPECIFIC_CAMERA := true
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+
+# Charger
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
+# Clang
+USE_CLANG_PLATFORM_BUILD := true
+
+# CM Hardware
+BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_HARDWARE_CLASS += \
+    hardware/cyanogen/cmhw
+
+# CNE / DPM
+BOARD_USES_QCNE := true
+TARGET_LDPRELOAD := libNimsWrap.so
+
+# CPUsets
+ENABLE_CPUSETS := true
+
+# Display
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_ION := true
+USE_OPENGL_RENDERER := true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+
+# Dexopt
+ifeq ($(HOST_OS),linux)
+    WITH_DEXPREOPT := true
+    WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+endif
+
+# Encryption
+TARGET_HW_DISK_ENCRYPTION := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+# Filesystem
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# FM
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+#TARGET_QCOM_NO_FM_FIRMWARE := true
+
+# GPS
+USE_DEVICE_SPECIFIC_GPS := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_land
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+TARGET_RECOVERY_DEVICE_MODULES := libinit_land
+
+# Keystore
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 67108864
+BOARD_CACHEIMAGE_PARTITION_SIZE    := 268435456
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 3221225472
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 26301931008
+BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Peripheral manager
+TARGET_PER_MGR_ENABLED := true
+
+# Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# QCOM support
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QC_TIME_SERVICES := true
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
+
+# Properties
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+
+# RIL
+TARGET_RIL_VARIANT := caf
+
+# SELinux
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+
+# Sensors
+USE_SENSOR_MULTI_HAL := true
+
+# Wi-Fi
+BOARD_HAS_QCOM_WLAN := true
+BOARD_HAS_QCOM_WLAN_SDK := true
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+BOARD_WLAN_DEVICE := qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+WIFI_DRIVER_FW_PATH_AP := "ap"
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
 -include vendor/xiaomi/land/BoardConfigVendor.mk
