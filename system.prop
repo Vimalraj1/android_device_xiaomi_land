@@ -109,6 +109,7 @@ media.aac_51_output_enabled=true
 qcom.hw.aac.encoder=true
 mm.enable.qcom_parser=1048575
 vidc.disable.split.mode=1
+persist.media.treble_omx=false
 
 # Perf
 ro.vendor.gt_library=libqti-gt.so
