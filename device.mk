@@ -24,7 +24,6 @@ DEVICE_PATH := device/xiaomi/land
 DEVICE_PACKAGE_OVERLAYS += \
     $(DEVICE_PATH)/overlay
 
-
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
@@ -67,7 +66,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.print.xml:system/etc/permissions/android.software.print.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
-
 
 # ANT
 PRODUCT_PACKAGES += \
@@ -126,7 +124,7 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-impl
 
 # Display
 PRODUCT_PACKAGES += \
@@ -178,9 +176,8 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
     $(DEVICE_PATH)/gps/etc/lowi.conf:system/etc/lowi.conf \
     $(DEVICE_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
-    $(DEVICE_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf \
+    $(DEVICE_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf 
 
-<<<<<<< HEAD:device.mk
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl
@@ -199,7 +196,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.$(TARGET_BOARD_PLATFORM)
+    lights.$(TARGET_BOARD_PLATFORM) \
     android.hardware.light@2.0-impl
 
 # Media
@@ -232,7 +229,8 @@ PRODUCT_PACKAGES += \
 
 # Power HAL
 PRODUCT_PACKAGES += \
-    power.$(TARGET_BOARD_PLATFORM)
+    power.$(TARGET_BOARD_PLATFORM) \
+    android.hardware.power@1.0-impl
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -263,7 +261,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    sensors.msm8937
+    sensors.msm8937 \
     android.hardware.sensors@1.0-impl
 
 PRODUCT_COPY_FILES += \
