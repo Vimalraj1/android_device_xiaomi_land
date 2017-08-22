@@ -122,6 +122,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+
 # Display
 PRODUCT_PACKAGES += \
     copybit.$(TARGET_BOARD_PLATFORM) \
