@@ -266,6 +266,7 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.msm8937
+    android.hardware.sensors@1.0-impl
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
