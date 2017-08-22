@@ -125,11 +125,12 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     liboverlay \
     memtrack.$(TARGET_BOARD_PLATFORM) \
-    libjni_livedisplay
-
-# Doze mode
-PRODUCT_PACKAGES += \
-    XiaomiDoze
+    libjni_livedisplay \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl
 
 # Ebtables
 PRODUCT_PACKAGES += \
@@ -214,7 +215,8 @@ PRODUCT_PACKAGES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    libjson
+    libjson \
+    libtinyxml
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -227,6 +229,10 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     init.qcom.usb.rc \
     init.qcom.usb.sh
+
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
 
 # RIL
 PRODUCT_PACKAGES += \
