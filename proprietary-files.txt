@@ -1459,6 +1459,8 @@ vendor/lib64/libnetmgr.so
 vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
+vendor/lib64/libprotobuf-cpp-shit.so|9f7ec96c9d492bc1c93bd3e674db701313ba2f4b
+vendor/lib64/libsettings.so|1fed5b57cebc4ae314663a418f843fd688e44ce5
 vendor/lib64/libsystem_health_mon.so
 vendor/qcril.db
 
