@@ -15,21 +15,18 @@
 # limitations under the License.
 #
 
-# Inherit device path
-$(call inherit-product, $(LOCAL_PATH)/DevicePath.mk)
-
 # Define platform before including any common things
-$(call inherit-product, $(LOCAL_PATH)/PlatformConfig.mk)
+$(call inherit-product, $(DEVICE_PATH)/PlatformConfig.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Lineage stuff
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common LineageOS stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit from land device
-$(call inherit-product, $(LOCAL_PATH)/device.mk)
+$(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 PRODUCT_BRAND := Xiaomi
 PRODUCT_DEVICE := land
