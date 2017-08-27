@@ -77,6 +77,8 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
     audiod \
     audio.a2dp.default \
     audio.primary.msm8937 \
@@ -108,7 +110,11 @@ PRODUCT_COPY_FILES += \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
 
-# Snap
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
+# Camera
 PRODUCT_PACKAGES += \
     Snap
 
@@ -118,10 +124,11 @@ PRODUCT_PACKAGES += \
     gralloc.$(TARGET_BOARD_PLATFORM) \
     hwcomposer.$(TARGET_BOARD_PLATFORM) \
     libtinyxml \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
     liboverlay \
-    memtrack.$(TARGET_BOARD_PLATFORM)
-
-PRODUCT_PACKAGES += \
+    memtrack.$(TARGET_BOARD_PLATFORM) \
     libjni_livedisplay
 
 # Doze mode
@@ -182,9 +189,26 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/sec_config:system/etc/sec_config
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
+
 # Lights
 PRODUCT_PACKAGES += \
-    lights.$(TARGET_BOARD_PLATFORM)
+    lights.$(TARGET_BOARD_PLATFORM) \
+    android.hardware.light@2.0-impl
+
+
+# Media
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(DEVICE_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(DEVICE_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -200,7 +224,8 @@ PRODUCT_PACKAGES += \
 
 # Power HAL
 PRODUCT_PACKAGES += \
-    power.$(TARGET_BOARD_PLATFORM)
+    power.$(TARGET_BOARD_PLATFORM) \
+    android.hardware.power@1.0-impl
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -226,6 +251,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
     sensors.msm8937
 
 PRODUCT_COPY_FILES += \
@@ -241,8 +267,14 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level-0.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version-1_0_3.xml 
 
-# Wi-Fi
+# Vibrator
 PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
+
+# Wifi
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
+    libcld80211 \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwpa_client \
