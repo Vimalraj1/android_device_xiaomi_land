@@ -205,6 +205,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
+# Launcher3
+PRODUCT_PACKAGES += \
+    Launcher3
+
 # Media
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
@@ -215,6 +219,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
+# Netutils
+PRODUCT_PACKAGES += \
+    netutils-wrapper-1.0
 
 # IRQ
 PRODUCT_COPY_FILES += \
@@ -254,7 +262,7 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.rc \
     init.qcom.sh \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
     init.qcom.bt.sh \
     init.qcom.power.rc \
     init.qcom.usb.rc \
@@ -266,13 +274,18 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2
 
+# Seccomp policy
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
+
 # Sensors
 PRODUCT_PACKAGES += \
-    sensors.msm8937
+    sensors.msm8937 \
+    android.hardware.sensors@1.0-impl
 
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
-    $(DEVICE_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
+    $(DEVICE_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
+    $(DEVICE_PATH)/configs/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf
 
 # Thermal
 PRODUCT_COPY_FILES += \
