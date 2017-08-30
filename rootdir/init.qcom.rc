@@ -59,6 +59,9 @@ on fs
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
 
+    # Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/tombstones 0771 system system
