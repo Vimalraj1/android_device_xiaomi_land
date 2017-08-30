@@ -421,16 +421,24 @@ on property:vold.decrypt=trigger_restart_framework
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
-service cnd /system/bin/cnd
-    class main
-    socket cnd stream 660 root inet
-    writepid /dev/cpuset/system-background/tasks
+#service cnd /system/bin/cnd
+#    class main
+#    socket cnd stream 660 root inet
+#    writepid /dev/cpuset/system-background/tasks
 
-service dpmd /system/bin/dpmd
-    class late_start
-    socket dpmd stream 660 root system
-    group system readproc
-    writepid /dev/cpuset/system-background/tasks
+#service dpmd /system/bin/dpmd
+#    class late_start
+#    socket dpmd stream 660 root system
+#    group system readproc
+#    writepid /dev/cpuset/system-background/tasks
+
+# FM enable/disable triggers
+on property:hw.fm.init=1
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
+
+on property:hw.fm.init=0
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
+>>>>>>> fa59ccd... garlic: disable cnd for now
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
@@ -443,10 +451,10 @@ service rmt_storage /system/bin/rmt_storage
     group wakelock
     writepid /dev/cpuset/system-background/tasks
 
-service tftp_server /system/bin/tftp_server
-    class main
-    user root
-    writepid /dev/cpuset/system-background/tasks
+#service tftp_server /system/bin/tftp_server
+#    class main
+#    user root
+#    writepid /dev/cpuset/system-background/tasks
 
 service config_bt_addr /system/bin/btnvtool -O
     class core
@@ -477,10 +485,10 @@ service port-bridge /system/bin/port-bridge
     group radio system inet
     oneshot
 
-service netmgrd /system/bin/netmgrd
-    class main
-    group system wakelock
-    writepid /dev/cpuset/system-background/tasks
+#service netmgrd /system/bin/netmgrd
+#    class main
+#    group system wakelock
+#    writepid /dev/cpuset/system-background/tasks
 
 service qti /system/vendor/bin/qti
     class main
