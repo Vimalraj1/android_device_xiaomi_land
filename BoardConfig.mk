@@ -215,7 +215,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
 #TARGET_RELEASETOOLS_EXTENSIONS := device/qcom/common
 
 # Sensor
-USE_SENSOR_MULTI_HAL := true
+# USE_SENSOR_MULTI_HAL := true
 
 # SELinux
 #include device/qcom/sepolicy/sepolicy.mk
