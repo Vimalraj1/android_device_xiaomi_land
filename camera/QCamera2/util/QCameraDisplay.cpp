@@ -33,7 +33,7 @@
 #include <cutils/properties.h>
 
 // Camera dependencies
-#include "QCamera2HWI.h"
+#include "../HAL/QCamera2HWI.h"
 #include "QCameraDisplay.h"
 
 extern "C" {

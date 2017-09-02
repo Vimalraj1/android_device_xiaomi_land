@@ -24,3 +24,8 @@ include $(DEVICE_PATH)/product/*.mk
 
 # Inherit proprietary files
 $(call inherit-product, vendor/xiaomi/land/land-vendor.mk)
+ 
+# ConfigPanel
+PRODUCT_PACKAGES += \
+    ConfigPanel
+

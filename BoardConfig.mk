@@ -20,5 +20,10 @@ include $(DEVICE_PATH)/board/*.mk
 # Properties
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
+# CAF
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8937
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8937
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8937
+
 # Inherit the proprietary files
 -include vendor/xiaomi/land/BoardConfigVendor.mk
