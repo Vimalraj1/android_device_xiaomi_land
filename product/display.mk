@@ -13,7 +13,7 @@ PRODUCT_AAPT_PREBUILT_DPI := hdpi
 
 # Doze mode
 PRODUCT_PACKAGES += \
-    XiaomiDoze
+    XiaomiParts
 
 # Permissions
 PRODUCT_COPY_FILES += \
