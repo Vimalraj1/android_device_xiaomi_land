@@ -119,9 +119,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.$(TARGET_BOARD_PLATFORM) \
     libtinyxml \
     liboverlay \
-    memtrack.$(TARGET_BOARD_PLATFORM)
-
-PRODUCT_PACKAGES += \
+    memtrack.$(TARGET_BOARD_PLATFORM) \
     libjni_livedisplay
 
 # Doze mode
@@ -185,6 +183,10 @@ PRODUCT_COPY_FILES += \
 # Lights
 PRODUCT_PACKAGES += \
     lights.$(TARGET_BOARD_PLATFORM)
+
+# Libshims
+PRODUCT_PACKAGES += \
+    libshims_ims
 
 # OMX
 PRODUCT_PACKAGES += \
