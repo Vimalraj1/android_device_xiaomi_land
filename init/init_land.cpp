@@ -34,17 +34,19 @@
 #include <sstream>
 #include <sys/sysinfo.h>
 
-#include "vendor_init.h"
+#include <android-base/properties.h>
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
+#include "vendor_init.h"
 
-char const *heapstartsize;
-char const *heapgrowthlimit;
-char const *heapsize;
-char const *heapminfree;
-char const *heapmaxfree;
-char const *large_cache_height;
+using android::base::GetProperty;
+using android::base::SetProperty;
+
+std::string heapstartsize;
+std::string heapgrowthlimit;
+std::string heapsize;
+std::string heapminfree;
+std::string heapmaxfree;
+std::string large_cache_height;
 
 static std::string board_id;
 
@@ -85,11 +87,7 @@ static void init_alarm_boot_properties()
      * 7 -> CBLPWR_N pin toggled (for external power supply)
      * 8 -> KPDPWR_N pin toggled (power key pressed)
      */
-     if (boot_reason == 3) {
-        property_set("ro.alarm_boot", "true");
-     } else {
-        property_set("ro.alarm_boot", "false");
-     }
+SetProperty("ro.alarm_boot", boot_reason == 3 ? "true" : "false");
 }
 
 void check_device()
@@ -120,36 +118,36 @@ void check_device()
 
 void init_variant_properties()
 {
-    if (property_get("ro.cm.device") != "land")
+    if (GetProperty("ro.cm.device") != "land")
         return;
 
     import_kernel_cmdline(0, import_cmdline);
     
     // Set board
-    property_set("ro.product.wt.boardid", board_id.c_str());
+    SetProperty("ro.product.wt.boardid", board_id.c_str());
 
     if (board_id == "S88537AA1") {
-        property_set("ro.build.display.wtid", "SW_S88537AA1_V079_M20_MP_XM");
+        SetProperty("ro.build.display.wtid", "SW_S88537AA1_V079_M20_MP_XM");
     } else if (board_id == "S88537AB1") {
-        property_set("ro.build.display.wtid", "SW_S88537AB1_V079_M20_MP_XM");
+        SetProperty("ro.build.display.wtid", "SW_S88537AB1_V079_M20_MP_XM");
     } else if (board_id == "S88537AC1") {
-        property_set("ro.build.display.wtid", "SW_S88537AC1_V079_M20_MP_XM");
+        SetProperty("ro.build.display.wtid", "SW_S88537AC1_V079_M20_MP_XM");
     } else if (board_id == "S88537BA1") {
-        property_set("ro.build.display.wtid", "SW_S88537BA1_V079_M20_MP_XM");
-        property_set("mm.enable.qcom_parser", "196495");
+        SetProperty("ro.build.display.wtid", "SW_S88537BA1_V079_M20_MP_XM");
+        SetProperty("mm.enable.qcom_parser", "196495");
     } else if (board_id == "S88537CA1") {
-        property_set("ro.build.display.wtid", "SW_S88537CA1_V079_M20_MP_XM");
-        property_set("mm.enable.qcom_parser", "196495");
+        SetProperty("ro.build.display.wtid", "SW_S88537CA1_V079_M20_MP_XM");
+        SetProperty("mm.enable.qcom_parser", "196495");
     } else if (board_id == "S88537EC1") {
-        property_set("ro.build.display.wtid", "SW_S88537EC1_V079_M20_MP_XM");
-        property_set("mm.enable.qcom_parser", "196495");
+        SetProperty("ro.build.display.wtid", "SW_S88537EC1_V079_M20_MP_XM");
+        SetProperty("mm.enable.qcom_parser", "196495");
     }
 
     // Variants   
     if (board_id == "S88537AB1"){
-        property_set("ro.product.model", "Redmi 3X");
+        SetProperty("ro.product.model", "Redmi 3X");
     } else {
-        property_set("ro.product.model", "Redmi 3S");
+        SetProperty("ro.product.model", "Redmi 3S");
     }
 }
 
@@ -159,23 +157,23 @@ void vendor_load_properties()
     check_device();
     init_variant_properties();
 
-    property_set("dalvik.vm.heapstartsize", heapstartsize);
-    property_set("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
-    property_set("dalvik.vm.heapsize", heapsize);
-    property_set("dalvik.vm.heaptargetutilization", "0.75");
-    property_set("dalvik.vm.heapminfree", heapminfree);
-    property_set("dalvik.vm.heapmaxfree", heapmaxfree);
+    SetProperty("dalvik.vm.heapstartsize", heapstartsize);
+    SetProperty("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
+    SetProperty("dalvik.vm.heapsize", heapsize);
+    SetProperty("dalvik.vm.heaptargetutilization", "0.75");
+    SetProperty("dalvik.vm.heapminfree", heapminfree);
+    SetProperty("dalvik.vm.heapmaxfree", heapmaxfree);
 
-    property_set("ro.hwui.texture_cache_size", "72");
-    property_set("ro.hwui.layer_cache_size", "48");
-    property_set("ro.hwui.r_buffer_cache_size", "8");
-    property_set("ro.hwui.path_cache_size", "32");
-    property_set("ro.hwui.gradient_cache_size", "1");
-    property_set("ro.hwui.drop_shadow_cache_size", "6");
-    property_set("ro.hwui.texture_cache_flushrate", "0.4");
-    property_set("ro.hwui.text_small_cache_width", "1024");
-    property_set("ro.hwui.text_small_cache_height", "1024");
-    property_set("ro.hwui.text_large_cache_width", "2048");
-    property_set("ro.hwui.text_large_cache_height", large_cache_height);
+    SetProperty("ro.hwui.texture_cache_size", "72");
+    SetProperty("ro.hwui.layer_cache_size", "48");
+    SetProperty("ro.hwui.r_buffer_cache_size", "8");
+    SetProperty("ro.hwui.path_cache_size", "32");
+    SetProperty("ro.hwui.gradient_cache_size", "1");
+    SetProperty("ro.hwui.drop_shadow_cache_size", "6");
+    SetProperty("ro.hwui.texture_cache_flushrate", "0.4");
+    SetProperty("ro.hwui.text_small_cache_width", "1024");
+    SetProperty("ro.hwui.text_small_cache_height", "1024");
+    SetProperty("ro.hwui.text_large_cache_width", "2048");
+    SetProperty("ro.hwui.text_large_cache_height", large_cache_height);
 }
 
