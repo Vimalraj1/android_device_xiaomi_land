@@ -34,10 +34,9 @@
 #include <sstream>
 #include <sys/sysinfo.h>
 
-#include "vendor_init.h"
+#include <android-base/properties.h>
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
+#include "vendor_init.h"
 
 char const *heapstartsize;
 char const *heapgrowthlimit;
