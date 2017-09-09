@@ -16,7 +16,7 @@
 #
 
 # Inherit device path
-$(call inherit-product, $(LOCAL_PATH)/DevicePath.mk)
+#$(call inherit-product, $(LOCAL_PATH)/DevicePath.mk)
 
 # Define platform before including any common things
 $(call inherit-product, $(LOCAL_PATH)/PlatformConfig.mk)
