@@ -108,9 +108,11 @@ PRODUCT_COPY_FILES += \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
 
-# Snap
+# Camera
 PRODUCT_PACKAGES += \
-    Snap
+    Snap \
+    camera.device@3.2-impl \
+    android.hardware.camera.provider@2.4-impl
 
 # Display
 PRODUCT_PACKAGES += \
@@ -120,13 +122,12 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     liboverlay \
     memtrack.$(TARGET_BOARD_PLATFORM)
-
-PRODUCT_PACKAGES += \
-    libjni_livedisplay
-
-# Doze mode
-PRODUCT_PACKAGES += \
-    XiaomiDoze
+    libjni_livedisplay \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl 
 
 # Ebtables
 PRODUCT_PACKAGES += \
@@ -136,7 +137,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprintd
+    fingerprintd \
+    android.hardware.biometrics.fingerprint@2.1-service
 
 # FM
 PRODUCT_PACKAGES += \
@@ -163,6 +165,41 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/gps/etc/lowi.conf:system/etc/lowi.conf \
     $(DEVICE_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
     $(DEVICE_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf \
+
+# HALS
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl
+
+# Display (RenderScript HAL)
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl 
+
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl
+
+# GNSS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
+
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
+
+# USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -201,7 +238,8 @@ PRODUCT_PACKAGES += \
 
 # Power HAL
 PRODUCT_PACKAGES += \
-    power.$(TARGET_BOARD_PLATFORM)
+    power.$(TARGET_BOARD_PLATFORM) \
+    android.hardware.power@1.0-impl 
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -248,6 +286,7 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     wificond \
+    wifilogd \
     wpa_supplicant \
     wpa_supplicant.conf \
     wcnss_service
