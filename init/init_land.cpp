@@ -37,6 +37,9 @@
 #include <android-base/properties.h>
 #include "property_service.h"
 #include "vendor_init.h"
+#include "util.h"
+
+using android::base::GetProperty;
 
 char const *heapstartsize;
 char const *heapgrowthlimit;
@@ -119,10 +122,10 @@ void check_device()
 
 void init_variant_properties()
 {
-    if (property_get("ro.cm.device") != "land")
+    if (GetProperty("ro.lineage.device", "") != "land")
         return;
 
-    import_kernel_cmdline(0, import_cmdline);
+    import_kernel_cmdline(false, import_cmdline);
     
     // Set board
     property_set("ro.product.wt.boardid", board_id.c_str());
@@ -144,7 +147,7 @@ void init_variant_properties()
         property_set("mm.enable.qcom_parser", "196495");
     }
 
-    // Variants   
+    // Variants
     if (board_id == "S88537AB1"){
         property_set("ro.product.model", "Redmi 3X");
     } else {
