@@ -210,7 +210,7 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+    $(DEVICE_PATH)/manifest.xml:system/vendor/manifest.xml
 
 # Launcher3
 PRODUCT_PACKAGES += \
@@ -283,7 +283,7 @@ PRODUCT_PACKAGES += \
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
+    $(DEVICE_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
 
 # Sensors
 PRODUCT_PACKAGES += \
