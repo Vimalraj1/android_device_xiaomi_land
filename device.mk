@@ -211,7 +211,7 @@ PRODUCT_PACKAGES += \
 # HIDL
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/manifest.xml:system/vendor/manifest.xml
-
+    $(DEVICE_PATH)/compatibility_matrix.xml:system/vendor/compatibility_matrix.xml.xml
 # Launcher3
 PRODUCT_PACKAGES += \
     Launcher3
@@ -306,7 +306,7 @@ PRODUCT_COPY_FILES += \
 # Wi-Fi
 PRODUCT_PACKAGES += \
     libwpa_client \
-    hostapd \
+#    hostapd \
     wificond \
     wifilogd \
     wpa_supplicant \
