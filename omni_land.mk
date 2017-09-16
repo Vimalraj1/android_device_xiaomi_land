@@ -25,16 +25,19 @@ $(call inherit-product, $(LOCAL_PATH)/PlatformConfig.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Lineage stuff
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common Omni stuff.
+$(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from land device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
+# Get the prebuilt list of APNs
+$(call inherit-product, vendor/omni/config/gsm.mk)
+
+PRODUCT_NAME := omni_land
 PRODUCT_BRAND := Xiaomi
 PRODUCT_DEVICE := land
 PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_NAME := lineage_land
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 

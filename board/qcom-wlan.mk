@@ -1,4 +1,6 @@
 # Wi-Fi
+WIFI_NEEDS_FST_DRIVER := true
+
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
 

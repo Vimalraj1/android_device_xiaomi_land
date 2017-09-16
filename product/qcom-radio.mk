@@ -10,6 +10,7 @@ PRODUCT_COPY_FILES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full \
     libcnefeatureconfig \
     librmnetctl \
     libxml2
